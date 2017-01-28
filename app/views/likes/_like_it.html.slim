@@ -1,0 +1,6 @@
+-# Required locals: likable
+= form_for [likable, @like] do |f|
+  - if @like.errors.any?
+    - @like.errors.full_messages.each do |msg|
+      li[style="color: red;"] = msg
+  = f.button "Like", class: "button"

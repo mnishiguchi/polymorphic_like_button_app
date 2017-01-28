@@ -1,4 +1,6 @@
 nav.nav
+  .nav-left
+    = link_to 'Polymorphic like button app', root_path, class: "nav-item" 
   .nav-right
     = link_to 'All posts', posts_path, class: "nav-item" 
     - if current_user 

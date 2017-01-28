@@ -11,8 +11,9 @@
 #
 
 class Post < ApplicationRecord
-  belongs_to :user # belongs_to :user, class_name: :User, foreign_key: :user_id
+  include Likable
 
-  # has_many :likes
-  # has_many :liked_users, through: :likes, source: :user
+  belongs_to :user
+  has_many :comments
+  has_many :likes, as: :likable
 end
