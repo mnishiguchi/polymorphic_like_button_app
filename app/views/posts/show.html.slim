@@ -1,0 +1,15 @@
+h1.title posts#show
+
+/ h1.title 
+/   = @post.title
+/ p by #{@post.user.email}
+/ hr
+/ p = @post.body
+/ 
+/ - if current_user
+/   = render "likes/like_button"
+/   
+/ hr
+/ h2 Users who like this post
+/ - @post.liked_users.each do |user|
+/   li = user.email

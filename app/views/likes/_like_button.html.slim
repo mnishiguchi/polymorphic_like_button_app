@@ -1,0 +1,9 @@
+- if current_user.already_liked?(@post)
+  = link_to 'Liked', post_like_path(@post), method: :delete, class: "button is-primary"
+- else
+  = form_for [@post, @like] do |f|
+    - if @like.errors.any?
+      - @like.errors.full_messages.each do |msg|
+        li[style="color: red;"]
+          = msg
+    = f.submit "Like", class: "button"

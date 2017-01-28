@@ -1,0 +1,10 @@
+h1.title posts#index
+/ - if @user.present?
+/   h1.title #{@user.email}'s posts 
+/ - else
+/   h1.title All posts  
+/ 
+/ ul
+/   - @posts.each do |post|
+/     li= link_to post.title, post
+  
