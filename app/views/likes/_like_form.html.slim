@@ -1,9 +1,9 @@
 -# This is a polymorphic like-button partial. We can like any likable entity.
 -# We could do this async, but it seems turbolinks handles that automatically.
 -# Therefore we disable the remote option.
--# Required locals: likable
+-# Required locals: likable, like
 #like_form
   - if likable.is_liked_by?(current_user)
     = render "likes/unlike_it", likable: likable
   - else
-    = render "likes/like_it", likable: likable
+    = render "likes/like_it", likable: likable, like: like

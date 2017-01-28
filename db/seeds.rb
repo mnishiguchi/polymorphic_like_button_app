@@ -1,3 +1,8 @@
+Like.delete_all
+Comment.delete_all
+Post.delete_all
+User.delete_all
+
 # Register users with password so that they can log in.
 3.times do |i|
   user = User.create!(

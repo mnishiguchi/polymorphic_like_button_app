@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   devise_for :users
 
   resources :users, only: [:index, :show] do
@@ -7,8 +7,13 @@ Rails.application.routes.draw do
   end
 
   resources :posts, only: [:index, :show] do
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: [:create, :destroy], controller: "post_likes"
+    resources :comments, only: :show
   end
 
-  root 'posts#index'
+  resources :comments, only: [:index, :show] do
+    resources :likes, only: [:create, :destroy], controller: "comment_likes"
+  end
+
+  root "posts#index"
 end

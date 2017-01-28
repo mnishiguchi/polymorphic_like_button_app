@@ -1,5 +1,3 @@
-h1.title posts#show
-
 h1.title 
   = @post.title
 p by #{@post.user.email}
@@ -7,7 +5,7 @@ hr
 p = @post.body
 
 - if current_user
-  = render "likes/like_form", likable: @post
+  = render "likes/like_form", likable: @post, like: @like
   
 hr
 
@@ -17,3 +15,15 @@ hr
   ul
     - liked_users.each do |user|
       li = user.email
+
+hr
+
+h2.title Comments
+ul
+  - @post.comments.each do |comment|
+    li 
+      = comment.content
+      = comment.created_at
+  
+      - if current_user
+        = render "likes/like_form", likable: comment, like: @like
