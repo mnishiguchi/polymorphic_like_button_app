@@ -1,0 +1,12 @@
+-# Required locals: post
+- if user_signed_in? && post.is_liked_by?(current_user)
+  - like = current_user.likes.where(likable: post).first
+  = link_to fa_icon("thumbs-up"), post_like_path(post.id, like.id), method: :delete, remote: true, class: "button is-info"
+- else
+  = link_to fa_icon("thumbs-o-up"), post_likes_path(post.id), method: :post, remote: true, class: "button"
+
+.tag = post.likes.count
+
+- post.liked_users.each do |user|
+  = link_to user do
+    = image_tag user.gravatar_url, width: 20

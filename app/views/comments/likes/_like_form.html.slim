@@ -1,0 +1,12 @@
+-# Required locals: comment
+- if user_signed_in? && comment.is_liked_by?(current_user)
+  - like = current_user.likes.where(likable: comment).first
+  = link_to fa_icon("heart"), comment_like_path(comment.id, like.id), method: :delete, remote: true, class: "button is-danger"
+- else
+  = link_to fa_icon("heart-o"), comment_likes_path(comment.id), method: :post, remote: true, class: "button"
+
+.tag = comment.likes.count
+
+- comment.liked_users.each do |user|
+  = link_to user do
+    = image_tag user.gravatar_url, width: 20

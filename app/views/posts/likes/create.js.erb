@@ -1,0 +1,3 @@
+$("#post_<%= @post.id %>_like_form").html(
+  "<%= j render('posts/likes/like_form', post: @post) %>"
+)

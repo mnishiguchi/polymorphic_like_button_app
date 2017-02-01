@@ -4,6 +4,10 @@ Post.delete_all
 User.delete_all
 
 # Register users with password so that they can log in.
+masa = User.create!(
+  email:    "nishiguchi.masa@gmail.com",
+  password: "password"
+)
 3.times do |i|
   user = User.create!(
     email:    "user#{i + 1}@example.com",
@@ -22,7 +26,7 @@ end
 # Each user writes a few comments.
 posts = Post.all
 User.all.each do |user|
-  3.times do
+  30.times do
     user.comments.create!(
       content: Faker::Lorem.paragraph,
       post: posts.sample
@@ -34,6 +38,6 @@ end
 posts    = Post.all
 comments = Comment.all
 User.all.each do |user|
-  3.times { Like.create!(user: user, likable: posts.sample) }
-  3.times { Like.create!(user: user, likable: comments.sample) }
+  30.times { posts.sample.set_liked_by(user) }
+  30.times { comments.sample.set_liked_by(user)  }
 end

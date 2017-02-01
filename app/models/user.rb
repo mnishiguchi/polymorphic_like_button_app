@@ -22,15 +22,17 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  # has_many :likes, dependent: :destroy
-  # has_many :liked_posts, through: :likes, source: :post
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # def already_liked?(post)
-  #   self.likes.exists?(post: post)
-  # end
+  def likes?(likable)
+    likable.likes.where(user_id: id).any? # self.likes.exists?(post: post)
+  end
+
+  def gravatar_url
+    hash = Digest::MD5.hexdigest(email)
+    "http://www.gravatar.com/avatar/#{hash}"
+  end
 end

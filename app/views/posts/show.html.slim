@@ -5,17 +5,9 @@ hr
 p = @post.body
 
 - if current_user
-  = render "likes/like_form", likable: @post, like: @like
+  div [id='post_#{@post.id}_like_form']
+    = render "posts/likes/like_form", post: @post
   
-hr
-
-- liked_users = @post.liked_users
-- if liked_users.count > 0
-  h2.title Users who like this post
-  ul
-    - liked_users.each do |user|
-      li = user.email
-
 hr
 
 h2.title Comments
@@ -26,4 +18,5 @@ ul
       = comment.created_at
   
       - if current_user
-        = render "likes/like_form", likable: comment, like: @like
+        div [id='comment_#{comment.id}_like_form']
+          = render "comments/likes/like_form", comment: comment
